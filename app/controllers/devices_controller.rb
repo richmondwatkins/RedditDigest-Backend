@@ -14,7 +14,7 @@ class DevicesController < ApplicationController
 
     notification = {
       device_tokens: [device.deviceid],
-      content-available: 1,
+      content_available: true,
       sound: "",
       badge: 0
     }
