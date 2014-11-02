@@ -5,7 +5,6 @@ class Device < ActiveRecord::Base
     puts '=================='
     puts device.deviceid  
     puts '=================='
-
   end
 
 end
