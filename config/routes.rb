@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-   root to: 'welcome#index'
+  root to: 'welcome#index'
+  post '/deviceid/:device', :to => 'devices#create'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -33,6 +33,9 @@ group :production do
   gem 'unicorn'
   gem 'pg'
 end
+
+gem 'zero_push'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
