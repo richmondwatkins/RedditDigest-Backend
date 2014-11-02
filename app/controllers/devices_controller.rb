@@ -14,7 +14,9 @@ class DevicesController < ApplicationController
 
     notification = {
       device_tokens: [device.deviceid],
-      content_available: true
+      content_available: true,
+      sound: "",
+      badge: 1
     }
 
   ZeroPush.notify(notification) 
