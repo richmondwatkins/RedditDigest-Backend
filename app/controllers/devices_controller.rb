@@ -6,7 +6,14 @@ class DevicesController < ApplicationController
 
 
   def create
-   
+   puts 'THIS IS THE DEVICE TOKEN'
+   puts params[:device]
+   puts '======================'
+      puts '======================'
+   puts '======================'
+   puts '======================'
+   puts '======================'
+
     device = Device.find_or_create_by(:deviceToken => params[:device])
 
     ZeroPush.auth_token = "eZHW1pzRaYJHua6Egswr"
