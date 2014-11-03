@@ -18,7 +18,12 @@ class DevicesController < ApplicationController
       badge: 1
     }
 
-    ZeroPush.notify(notification) 
+    ZeroPush.notify(notification)
+
+    respond_to do |format|
+      msg = { :status => "ok", :message => "Success!", :html => "<b>...</b>" }
+      format.json  { render :json => msg } # don't do msg.to_json
+    end 
   end
 
   def add_phone
