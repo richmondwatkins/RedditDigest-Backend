@@ -12,7 +12,7 @@ class DevicesController < ApplicationController
     ZeroPush.auth_token = "eZHW1pzRaYJHua6Egswr"
 
     notification = {
-      device_tokens: [device.deviceid],
+      device_tokens: [device.deviceToken],
       content_available: true,
       sound: "",
       badge: 1
