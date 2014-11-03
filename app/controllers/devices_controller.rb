@@ -11,13 +11,13 @@ class DevicesController < ApplicationController
     device = Device.find_or_create_by(:deviceToken => params[:device])
 
        puts 'THIS IS THE DEVICE TOKEN'
-   puts device
+   puts device.deviceToken
    puts '======================'
       puts '======================'
    puts '======================'
    puts '======================'
    puts '======================'
-   
+
     ZeroPush.auth_token = "eZHW1pzRaYJHua6Egswr"
 
     notification = {
