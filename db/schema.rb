@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102065909) do
+ActiveRecord::Schema.define(version: 20141103192656) do
 
   create_table "deviceId", force: true do |t|
     t.string "deviceId"
   end
 
   create_table "devices", force: true do |t|
-    t.string   "deviceid"
+    t.string   "deviceToken"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "phoneId"
   end
 
 end

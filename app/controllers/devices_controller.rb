@@ -8,7 +8,6 @@ class DevicesController < ApplicationController
   def create
    
     device = Device.find_or_create_by(:deviceid => params[:device])
-    puts device.deviceid
 
     ZeroPush.auth_token = "eZHW1pzRaYJHua6Egswr"
 
@@ -19,8 +18,11 @@ class DevicesController < ApplicationController
       badge: 1
     }
 
-  ZeroPush.notify(notification) 
+    ZeroPush.notify(notification) 
+  end
 
+  def add_phone
+      phone = Device.find_or_create_by(:phoneId => params[:phone])
   end
 
   private
