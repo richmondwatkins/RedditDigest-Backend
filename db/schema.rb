@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104042419) do
+ActiveRecord::Schema.define(version: 20141104062026) do
 
   create_table "deviceId", force: true do |t|
     t.string "deviceId"
@@ -25,7 +25,9 @@ ActiveRecord::Schema.define(version: 20141104042419) do
   end
 
   create_table "subreddits", force: true do |t|
-    t.text "subreddit"
+    t.text    "subreddit"
+    t.integer "device_id"
+    t.string  "url"
   end
 
 end

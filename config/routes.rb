@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
   root to: 'welcome#index'
-  post '/deviceid/:device', :to => 'devices#create'
-  post '/phone/:phone', :to => 'devices#add_phone'
+  post '/register/push', :to => 'devices#register_push'
+  post '/register/device', :to => 'devices#register_device'
   post '/subreddits/:phoneid', :to => 'devices#add_subreddits'
+  post '/subreddits/delete/:phoneid', :to => 'devices#destroy_subreddits'
+
+  get '/subreddits/:phoneid', :to => 'devices#get_subreddits'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
