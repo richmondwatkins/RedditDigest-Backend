@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103192656) do
+ActiveRecord::Schema.define(version: 20141104032307) do
 
   create_table "deviceId", force: true do |t|
     t.string "deviceId"
@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(version: 20141103192656) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "phoneId"
+  end
+
+  create_table "subreddits", force: true do |t|
+    t.text "subreddit"
   end
 
 end

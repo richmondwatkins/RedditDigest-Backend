@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
   post '/deviceid/:device', :to => 'devices#create'
   post '/phone/:phone', :to => 'devices#add_phone'
-
+  post '/subreddits/:phoneid', :to => 'devices#add_subreddits'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
