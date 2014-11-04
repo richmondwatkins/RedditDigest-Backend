@@ -27,7 +27,7 @@ class DevicesController < ApplicationController
   end
 
   def add_phone
-      phone = Device.find_or_create_by(:phoneId => params[:phone])
+      phone = Device.find_or_create_by(:phoneid => params[:phone])
       respond_to do |format|
       msg = { :status => "ok", :message => "Success!", :html => "<b>...</b>" }
       format.json  { render :json => msg } # don't do msg.to_json
@@ -35,7 +35,7 @@ class DevicesController < ApplicationController
   end
 
   def add_subreddits
-    phone = Device.where(["phoneId = ?", params[:phoneid]])
+    phone = Device.where(["phoneid = ?", params[:phoneid]])
 
     puts '==============================='
 
