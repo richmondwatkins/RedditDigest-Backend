@@ -35,7 +35,14 @@ class DevicesController < ApplicationController
   end
 
   def add_subreddits
-    phone = Device.find_by_phoneId(params[:phoneid])
+    phone = Device.find(:phoneId => params[:phoneid])
+        puts '==============================='
+
+    puts '==============================='
+    puts '==============================='
+    puts '==============================='
+    puts '==============================='
+
     puts 'THIS IS THE PHONEEEEEEEE'
     puts phone
     puts '==============================='
