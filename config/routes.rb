@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   get '/subreddits/:phoneid', :to => 'devices#get_subreddits'
 
+  get '/add/categories', :to => 'categories#add'
+  post '/upload/categories', :to => 'categories#create'
+  get '/get/categories', :to => 'categories#get_categories'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
