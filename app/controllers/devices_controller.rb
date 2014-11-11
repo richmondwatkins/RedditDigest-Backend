@@ -50,7 +50,7 @@ class DevicesController < ApplicationController
    
     data = params["subreddits"]
     data.each do |subreddit|
-      Subreddit.find_or_create_by(:subreddit => subreddit["name"], :url =>subreddit["url"], :device_id => phone.id)
+      Subreddit.find_or_create_by(:subreddit => subreddit["subreddit"], :url =>subreddit["url"], :device_id => phone.id)
     end
 
     respond_to do |format|
@@ -91,3 +91,5 @@ class DevicesController < ApplicationController
 
 
 end
+
+
