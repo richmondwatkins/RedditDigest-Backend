@@ -6,12 +6,9 @@ class DevicesController < ApplicationController
 
 
   def register_push
-      phone_string = /\>(.*)/.match(params[:deviceid]).to_s.strip
-    phone_string[0] = ''
-    phone_string = phone_string.lstrip
- 
+    
     # device = Device.find_or_create_by(:deviceToken => params[:token])
-    device = Device.find_by_phoneid(phone_string)
+    device = Device.find_by_phoneid(params[:deviceid])
     device.deviceToken = params[:token]
     device.timeZone = params[:timeZone]
     device.save
@@ -34,11 +31,8 @@ class DevicesController < ApplicationController
   end
 
   def register_device
-    phone_string = /\>(.*)/.match(params[:deviceid]).to_s.strip
-    phone_string[0] = ''
-    phone_string = phone_string.lstrip
-
-    phone = Device.find_or_create_by(:phoneid => phone_string)
+   
+    phone = Device.find_or_create_by(:phoneid => params[:deviceid])
 
     respond_to do |format|
        msg = { :status => "ok", :message => "Success!" }
@@ -47,11 +41,8 @@ class DevicesController < ApplicationController
   end
 
   def add_subreddits
-    phone_string = /\>(.*)/.match(params[:phoneid]).to_s.strip
-    phone_string[0] = ''
-    phone_string = phone_string.lstrip
 
-    phone = Device.find_by_phoneid(phone_string)
+    phone = Device.find_by_phoneid(params[:phoneid])
 
     #TODO remove subreddits that have been removed from core data
     data = params["subreddits"]
@@ -66,11 +57,8 @@ class DevicesController < ApplicationController
    end
 
    def get_subreddits
-    phone_string = /\>(.*)/.match(params[:phoneid]).to_s.strip
-    phone_string[0] = ''
-    phone_string = phone_string.lstrip
-
-    phone = Device.find_by_phoneid(phone_string)
+ 
+    phone = Device.find_by_phoneid(params[:phoneid])
 
     respond_to do |format|
       msg = { :subreddits => phone.subreddits }
@@ -79,11 +67,8 @@ class DevicesController < ApplicationController
    end
 
    def destroy_subreddits
-    phone_string = /\>(.*)/.match(params[:phoneid]).to_s.strip
-    phone_string[0] = ''
-    phone_string = phone_string.lstrip
 
-    phone = Device.find_by_phoneid(phone_string)
+    phone = Device.find_by_phoneid(params[:phoneid])
 
     data = params["subreddit"]
     Subreddit.find_by_subreddit_and_device_id(data["name"], phone.id).destroy
