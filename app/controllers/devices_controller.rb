@@ -8,10 +8,12 @@ class DevicesController < ApplicationController
   def register_push
       phone_string = /\>(.*)/.match(params[:deviceid]).to_s.strip
     phone_string[0] = ''
-  
+    phone_string = phone_string.lstrip
+ 
     # device = Device.find_or_create_by(:deviceToken => params[:token])
     device = Device.find_by_phoneid(phone_string)
     device.deviceToken = params[:token]
+    device.timeZone = params[:timeZone]
     device.save
 
     # ZeroPush.auth_token = "eZHW1pzRaYJHua6Egswr"
@@ -32,8 +34,9 @@ class DevicesController < ApplicationController
   end
 
   def register_device
-      phone_string = /\>(.*)/.match(params[:deviceid]).to_s.strip
-      phone_string[0] = ''
+    phone_string = /\>(.*)/.match(params[:deviceid]).to_s.strip
+    phone_string[0] = ''
+    phone_string = phone_string.lstrip
 
     phone = Device.find_or_create_by(:phoneid => phone_string)
 
@@ -46,8 +49,11 @@ class DevicesController < ApplicationController
   def add_subreddits
     phone_string = /\>(.*)/.match(params[:phoneid]).to_s.strip
     phone_string[0] = ''
+    phone_string = phone_string.lstrip
+
     phone = Device.find_by_phoneid(phone_string)
-   
+
+    #TODO remove subreddits that have been removed from core data
     data = params["subreddits"]
     data.each do |subreddit|
       Subreddit.find_or_create_by(:subreddit => subreddit["subreddit"], :url =>subreddit["url"], :device_id => phone.id)
@@ -62,6 +68,8 @@ class DevicesController < ApplicationController
    def get_subreddits
     phone_string = /\>(.*)/.match(params[:phoneid]).to_s.strip
     phone_string[0] = ''
+    phone_string = phone_string.lstrip
+
     phone = Device.find_by_phoneid(phone_string)
 
     respond_to do |format|
@@ -73,10 +81,12 @@ class DevicesController < ApplicationController
    def destroy_subreddits
     phone_string = /\>(.*)/.match(params[:phoneid]).to_s.strip
     phone_string[0] = ''
+    phone_string = phone_string.lstrip
+
     phone = Device.find_by_phoneid(phone_string)
 
     data = params["subreddit"]
-    Subreddit.find_by_subreddit_and_url_and_device_id(data["name"], data["url"], phone.id).destroy
+    Subreddit.find_by_subreddit_and_device_id(data["name"], phone.id).destroy
     respond_to do |format|
       msg = { :subreddits => phone.subreddits }
       format.json  { render :json => msg } 
