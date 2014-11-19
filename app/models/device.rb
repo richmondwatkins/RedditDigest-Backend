@@ -31,10 +31,10 @@ has_many :subreddits
     if utc_hour  >= 4
       six_pm = 18
     else
-      six_pm = -8
+      six_pm = -9
     end
       
-    time_zone = six_pm - utc_hour
+    time_zone = six_pm - utc_hour 
     puts time_zone
     devices = Device.where("time_zone = ?", time_zone)
 
