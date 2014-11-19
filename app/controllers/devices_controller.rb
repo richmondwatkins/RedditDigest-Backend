@@ -10,7 +10,7 @@ class DevicesController < ApplicationController
     # device = Device.find_or_create_by(:deviceToken => params[:token])
     device = Device.find_by_phoneid(params[:deviceid])
     device.device_token = params[:token]
-    device.timeZone = params[:timeZone]
+    device.time_zone = params[:timeZone]
     device.save
 
     # ZeroPush.auth_token = "eZHW1pzRaYJHua6Egswr"
