@@ -28,7 +28,6 @@ has_many :subreddits
   def evening_digest
     utc_time = Time.new.utc
     utc_hour = utc_time.hour
-    puts utc_hour
 
     if utc_hour  >= 4
       six_pm = 18
@@ -37,9 +36,10 @@ has_many :subreddits
     end
       
     time_zone = six_pm - utc_hour
+    puts time_zone
     devices = Device.where("time_zone = ?", time_zone)
 
-      if devices
+      if devices.count > 0
         send_notifications(devices)
       else
         puts 'No devices were registerd in this timezone'
