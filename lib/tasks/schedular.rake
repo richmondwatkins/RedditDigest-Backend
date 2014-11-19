@@ -1,7 +1,15 @@
-desc "This task is called by the Heroku scheduler add-on"
-task :cronjob => :environment do
+desc "Morning Digest"
+task :morning => :environment do
     puts "start."
 
-  Device.new.tester
+  Device.new.morning_digest
+  puts "done."
+end
+
+desc "Evening Digest"
+task :evening => :environment do
+    puts "start."
+
+  Device.new.evening_digest
   puts "done."
 end
