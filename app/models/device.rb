@@ -22,7 +22,7 @@ has_many :subreddits
 
       deviceTokens = []
       devices.each do |device|
-       deviceTokens << device.deviceToken.to_s
+       deviceTokens << device.device_token.to_s
      end
 
       notification = {
