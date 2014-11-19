@@ -29,9 +29,9 @@ has_many :subreddits
     utc_hour = utc_time.hour
 
     if utc_hour  >= 4
-      six_pm = 18
+      six_pm = 17
     else
-      six_pm = -9
+      six_pm = -8
     end
       
     time_zone = six_pm - utc_hour 
