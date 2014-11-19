@@ -16,24 +16,24 @@ has_many :subreddits
     
     timeZone = eight_am - utc_hour
 
-    devices = Device.where("timeZone = ?", -6)
+    # devices = Device.where("timeZone = ?", -6)
 
       ZeroPush.auth_token = "z3C5aT8qdyePAnD1eq9n"
 
-     devices.each do |device|
+     # devices.each do |device|
       deviceTokens = []
-      deviceTokens << device.deviceToken.to_s
+      # deviceTokens << device.deviceToken.to_s
 
       notification = {
-        device_tokens: deviceTokens,
+        device_tokens: ["29224d44f430eb0bf81be597e6532e04efc7604596f28283a79c4abb4a8bdf64"],
         content_available: true,
         sound: "",
-        badge: 1
+        badge: 3
       }
 
       puts notification
       ZeroPush.notify(notification) 
-end
+# end
     # time = Time.new
     # hour = time.hour
     # utc_offset = Time.new.utc_offset / 60 / 60
