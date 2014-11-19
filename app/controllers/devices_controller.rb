@@ -116,18 +116,15 @@ class DevicesController < ApplicationController
       end
     end
 
-    # if similarities.count >= 5
-   # end
-    look_for_differences(device.subreddits, current_user_subreddits)
+    # if similarities.count >= 4
+      look_for_differences(device.subreddits, current_user_subreddits)
+    # end
   end
 
 
   def look_for_differences(device_subs, current_user_subreddits)
     differences, current_user_sub_strings = find_differnces(device_subs, current_user_subreddits)
-    puts ' ==============='
-    puts differences
-    puts '========+++========'
-
+  
     recommendations = []
     differences.each do |difference|
       present = current_user_sub_strings.include?(difference)
