@@ -9,7 +9,7 @@ class DevicesController < ApplicationController
     
     # device = Device.find_or_create_by(:deviceToken => params[:token])
     device = Device.find_by_phoneid(params[:deviceid])
-    device.deviceToken = params[:token]
+    device.device_token = params[:token]
     device.timeZone = params[:timeZone]
     device.save
 

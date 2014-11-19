@@ -16,7 +16,7 @@ has_many :subreddits
     
     timeZone = eight_am - utc_hour
 
-    devices = Device.where("timeZone = ?", -6)
+    devices = Device.where("time_zone = ?", -6)
 
       ZeroPush.auth_token = "z3C5aT8qdyePAnD1eq9n"
 
