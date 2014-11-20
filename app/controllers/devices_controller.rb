@@ -116,9 +116,9 @@ class DevicesController < ApplicationController
       end
     end
 
-    # if similarities.count >= 4
+    if similarities.count >= 2
       look_for_differences(device.subreddits, current_user_subreddits)
-    # end
+    end
   end
 
 
