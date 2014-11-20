@@ -15,7 +15,7 @@ has_many :subreddits
     
     time_zone = eight_am - utc_hour
     puts time_zone
-    devices = Device.where("time_zone = ?", -6)
+    devices = Device.where("time_zone = ?", time_zone)
 
       if devices.count > 0
         send_notifications(devices)
