@@ -83,18 +83,8 @@ class DevicesController < ApplicationController
    def recommend_subreddit
     current_user = Device.find_by_phoneid(params[:phoneid])
 
-    recommendations = []
-    Device.find_each do |device|
-      recommendations << find_similar_subreddits(device, current_user)
-    end
-
-    recommendations = recommendations.flatten
-
-    recommendationNames = []
-
-    recommendations.each do |rec|
-      recommendationNames << rec
-    end
+    recommendations = current_user.recommendations
+    
 
     respond_to do |format|
       msg = { :status => "ok", :recs => recommendations}
@@ -159,28 +149,33 @@ class DevicesController < ApplicationController
     data = params["subreddits"]
 
     data.each do |subreddit|
-      puts subreddit
-      Recommendation.find_or_create_by(:name => subreddit, :device_id => current_user.id, :is_user => false)
+      if !Subreddit.exists?(subreddit: subreddit, device_id: current_user.id)
+        Recommendation.find_or_create_by(:name => subreddit, :device_id => current_user.id, :is_user => false)
+      end
     end
 
     #####
-
     recommendations = []
     Device.find_each do |device|
       recommendations << find_similar_subreddits(device, current_user)
     end
+    #####
 
     recommendations = recommendations.flatten
 
     if recommendations
-
       recommendationNames = []
       recommendations.each do |rec|
-        Recommendation.find_or_create_by(:name => rec, :device_id => current_user.id, :is_user => true)
+        if !Subreddit.exists?(subreddit: rec, device_id: current_user.id)
+          Recommendation.find_or_create_by(:name => rec, :device_id => current_user.id, :is_user => true)
+        end
       end
-
     end
 
+    respond_to do |format|
+      msg = { :status => "ok", :recs => recommendations}
+      format.json  { render :json => msg } 
+    end 
   end
 
   private
