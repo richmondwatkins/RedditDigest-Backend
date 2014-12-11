@@ -2,6 +2,7 @@ require 'time'
 class Device < ActiveRecord::Base
 
 has_many :subreddits
+has_many :recommendations
 
   def morning_digest
     utc_time = Time.new.utc

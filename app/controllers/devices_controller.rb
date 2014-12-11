@@ -151,6 +151,38 @@ class DevicesController < ApplicationController
    return (device_sub_strings - current_user_sub_strings), current_user_sub_strings
   end
 
+  def user_recommendations
+    current_user = Device.find_by_phoneid(params[:phoneid])
+
+    Recommendation.where(:device_id => current_user.id).destroy_all
+
+    data = params["subreddits"]
+
+    data.each do |subreddit|
+      puts subreddit
+      Recommendation.find_or_create_by(:name => subreddit, :device_id => current_user.id, :is_user => false)
+    end
+
+    #####
+
+    recommendations = []
+    Device.find_each do |device|
+      recommendations << find_similar_subreddits(device, current_user)
+    end
+
+    recommendations = recommendations.flatten
+
+    if recommendations
+
+      recommendationNames = []
+      recommendations.each do |rec|
+        Recommendation.find_or_create_by(:name => rec, :device_id => current_user.id, :is_user => true)
+      end
+
+    end
+
+  end
+
   private
 
   def device_params

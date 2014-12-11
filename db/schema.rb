@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119065106) do
+ActiveRecord::Schema.define(version: 20141211191100) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 20141119065106) do
     t.datetime "updated_at"
     t.string   "phoneid"
     t.integer  "time_zone"
+  end
+
+  create_table "recommendations", force: true do |t|
+    t.string  "name"
+    t.integer "device_id"
+    t.boolean "is_user"
   end
 
   create_table "subreddits", force: true do |t|
